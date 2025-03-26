@@ -4,6 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+    tree_count_per_type: 10
 
 services:
     # default configuration for services in *this* file
@@ -22,3 +23,24 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    # Фабрики деревьев
+    App\Factory\Tree\AppleTreeFactory:
+        tags: [ 'tree_factories' ]
+
+    App\Factory\Tree\PearTreeFactory:
+        tags: [ 'tree_factories' ]
+
+    # Фабрики фруктов
+    App\Factory\Fruit\AppleFruitFactory:
+        tags: [ 'fruit_factories' ]
+
+    App\Factory\Fruit\PearFruitFactory:
+        tags: [ 'fruit_factories' ]
+
+    # AppFixtures с внедрением списка фабрик деревьев и фруктов
+    App\DataFixtures\AppFixtures:
+        arguments:
+            $treeFactories: !tagged_iterator tree_factories
+            $fruitFactories: !tagged_iterator fruit_factories
+            $treeCountPerType: '%tree_count_per_type%'
