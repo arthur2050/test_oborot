@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Статистика деревьев{% endblock %}
+
+{% block body %}
+    <h1>Статистика по деревьям</h1>
+
+    <h2>Общее количество фруктов каждого вида</h2>
+    <ul>
+        {% for item in fruitCounts %}
+            <li>{{ item.type|capitalize }}: {{ item.fruitCount }} шт.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Общий вес собранных фруктов каждого вида</h2>
+    <ul>
+        {% for item in fruitWeights %}
+            <li>{{ item.type|capitalize }}: {{ item.totalWeight }} г</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Самое тяжелое яблоко</h2>
+    {% if heaviestApple %}
+        <p>Вес: {{ heaviestApple.weight }} г</p>
+        <p>ID дерева: {{ heaviestApple.treeId }}</p>
+    {% else %}
+        <p>Данные отсутствуют</p>
+    {% endif %}
+{% endblock %}
