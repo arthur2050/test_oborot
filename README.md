@@ -13,8 +13,8 @@
 
 ### 1️⃣ Склонировать проект  
 ```bash
-git clone https://github.com/your-repo.git
-cd your-repo
+git clone https://github.com/arthur2050/test_oborot
+cd test_oborot
 2️⃣ Установить зависимости
 composer install
 3️⃣ Запустить команду для настройки проекта
