@@ -4,6 +4,10 @@ namespace App\Factory\Tree;
 
 use App\Entity\Tree\AbstractTree;
 
-interface TreeFactoryInterface {
+interface TreeFactoryInterface
+{
+	/**
+	 * @return AbstractTree
+	 */
 	public function create(): AbstractTree;
 }

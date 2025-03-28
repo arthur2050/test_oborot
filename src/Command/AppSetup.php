@@ -9,20 +9,34 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Process\Process;
 
+
 class AppSetup extends Command
+
 {
 	protected static $defaultName = 'app:setup';
 
+	/**
+	 * @param EntityManagerInterface $entityManager em
+	 */
 	public function __construct(private EntityManagerInterface $entityManager)
 	{
 		parent::__construct();
 	}
 
+	/**
+	 * @return void
+	 */
 	protected function configure(): void
 	{
 		$this->setDescription('Создаёт базу данных, выполняет миграции и загружает фикстуры.');
 	}
 
+	/**
+	 * @param InputInterface $input
+	 * @param OutputInterface $output
+	 * @return int
+	 * @throws \Doctrine\DBAL\Exception
+	 */
 	protected function execute(InputInterface $input, OutputInterface $output): int
 	{
 		$io = new SymfonyStyle($input, $output);
@@ -64,6 +78,12 @@ class AppSetup extends Command
 		}
 	}
 
+	/**
+	 * @param array $command
+	 * @param SymfonyStyle $io
+	 * @param string $successMessage
+	 * @return void
+	 */
 	private function runProcess(array $command, SymfonyStyle $io, string $successMessage): void
 	{
 		$process = new Process($command);

@@ -2,20 +2,27 @@
 
 namespace App\Controller;
 
-use App\Entity\Tree\AppleTree;
 use App\Repository\AbstractFruitRepository;
 use App\Repository\AbstractTreeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class GardenController extends AbstractController {
 
+class GardenController extends AbstractController
+{
+
+	/**
+	 * @param AbstractTreeRepository $treeRepository
+	 * @param AbstractFruitRepository $fruitRepository
+	 * @return Response
+	 */
 	#[Route('/garden/index', name: 'garden.index', methods: ['GET'])]
 	public function index(
-		AbstractTreeRepository $treeRepository,
+		AbstractTreeRepository  $treeRepository,
 		AbstractFruitRepository $fruitRepository
-	): Response {
+	): Response
+	{
 		// Количество фруктов каждого типа
 		$fruitCounts = $treeRepository->countFruitsForEachTreeType();
 

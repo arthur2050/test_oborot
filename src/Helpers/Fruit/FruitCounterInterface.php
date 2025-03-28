@@ -2,6 +2,11 @@
 
 namespace App\Helpers\Fruit;
 
-interface FruitCounterInterface {
+interface FruitCounterInterface
+{
+
+	/**
+	 * @return array
+	 */
 	public function count(): array;
 }

@@ -16,9 +16,15 @@ class AppFixtures extends Fixture
 	public function __construct(
 		private iterable $treeFactories,  // Фабрики деревьев
 		private iterable $fruitFactories,  // Фабрики фруктов
-		private int $treeCountPerType
-	) {}
+		private int      $treeCountPerType
+	)
+	{
+	}
 
+	/**
+	 * @param ObjectManager $manager
+	 * @return void
+	 */
 	public function load(ObjectManager $manager): void
 	{
 		$trees = [];
